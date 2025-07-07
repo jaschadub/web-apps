@@ -1,0 +1,161 @@
+// Dark theme override for dropdown menus
+// This file provides dark styling for heading dropdowns and other menu choices
+
+.dropdown-menu {
+    // Override background and text colors for dark theme
+    &.theme-dark,
+    .theme-type-dark &,
+    .content-theme-dark & {
+        background-color: #2a2a2a !important;
+        border-color: #555 !important;
+        color: #fff !important;
+
+        li {
+            & > a {
+                color: #fff !important;
+                background-color: transparent !important;
+
+                &:focus, &.focus {
+                    color: #fff !important;
+                    background-color: #404040 !important;
+                }
+
+                &:hover {
+                    color: #fff !important;
+                    background-color: #404040 !important;
+                }
+            }
+
+            &.over > a {
+                color: #fff !important;
+                background-color: #404040 !important;
+            }
+
+            &.selected {
+                background-color: #555 !important;
+
+                a {
+                    color: #fff !important;
+
+                    &:hover,
+                    &.hover,
+                    &:focus,
+                    &.focus {
+                        background-color: #555 !important;
+                        color: #fff !important;
+                    }
+                }
+            }
+        }
+
+        > .disabled {
+            > a {
+                color: #999 !important;
+
+                &:hover, &:focus {
+                    color: #999 !important;
+                    background-color: transparent !important;
+                }
+            }
+        }
+
+        .divider {
+            background-color: #555 !important;
+        }
+    }
+}
+
+// Specific styling for combobox dropdowns (like heading selector)
+.combobox {
+    .dropdown-menu {
+        &.theme-dark,
+        .theme-type-dark &,
+        .content-theme-dark & {
+            background-color: #2a2a2a !important;
+            border-color: #555 !important;
+
+            li {
+                a {
+                    color: #fff !important;
+                    
+                    &:hover,
+                    &:focus {
+                        background-color: #404040 !important;
+                        color: #fff !important;
+                    }
+                }
+
+                &.selected {
+                    background-color: #555 !important;
+                    
+                    a {
+                        color: #fff !important;
+                    }
+                }
+            }
+        }
+    }
+
+    // Style the combobox input field for dark theme
+    &.theme-dark,
+    .theme-type-dark &,
+    .content-theme-dark & {
+        .form-control {
+            background-color: #333 !important;
+            color: #fff !important;
+            border-color: #555 !important;
+
+            .text {
+                color: #fff !important;
+            }
+        }
+
+        .btn-default {
+            background-color: #333 !important;
+            border-color: #555 !important;
+            color: #fff !important;
+
+            .caret {
+                border-top-color: #fff !important;
+            }
+        }
+    }
+}
+
+// Style for toolbar dropdown menus specifically
+#toolbar {
+    .dropdown-menu {
+        &.theme-dark,
+        .theme-type-dark &,
+        .content-theme-dark & {
+            background-color: #2a2a2a !important;
+            border-color: #555 !important;
+
+            li > a {
+                color: #fff !important;
+
+                &:hover,
+                &:focus {
+                    background-color: #404040 !important;
+                    color: #fff !important;
+                }
+            }
+        }
+    }
+}
+
+// Ensure menu items with icons also get proper styling
+.dropdown-menu {
+    &.theme-dark,
+    .theme-type-dark &,
+    .content-theme-dark & {
+        .menu-item-icon {
+            filter: invert(1) !important;
+            opacity: 0.8 !important;
+        }
+
+        .checked:not(.no-checkmark):before {
+            filter: invert(1) !important;
+        }
+    }
+}

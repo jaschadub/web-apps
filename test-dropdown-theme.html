@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Theme Dropdown Test</title>
+    <link rel="stylesheet/less" type="text/css" href="apps/documenteditor/main/resources/less/app.less" />
+    <script src="vendor/less/dist/less.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .theme-toggle {
+            margin: 20px 0;
+        }
+        .theme-dark {
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .theme-dark .demo-section {
+            border-color: #555;
+            background: #2a2a2a;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dark Theme Dropdown Test</h1>
+    
+    <div class="theme-toggle">
+        <button onclick="toggleTheme()">Toggle Dark Theme</button>
+        <span id="theme-status">Current: Light Theme</span>
+    </div>
+
+    <div class="demo-section">
+        <h3>Standard Dropdown Menu</h3>
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                Dropdown Example
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h3>Dropdown with Submenu</h3>
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                Complex Dropdown
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#">File</a></li>
+                <li class="dropdown-submenu">
+                    <a href="#">Edit</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Cut</a></li>
+                        <li><a href="#">Copy</a></li>
+                        <li><a href="#">Paste</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">View</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Help</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const status = document.getElementById('theme-status');
+            
+            if (body.classList.contains('theme-dark')) {
+                body.classList.remove('theme-dark');
+                status.textContent = 'Current: Light Theme';
+            } else {
+                body.classList.add('theme-dark');
+                status.textContent = 'Current: Dark Theme';
+            }
+        }
+
+        // Simple dropdown functionality
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('dropdown-toggle')) {
+                e.preventDefault();
+                const dropdown = e.target.parentElement;
+                const menu = dropdown.querySelector('.dropdown-menu');
+                
+                // Close all other dropdowns
+                document.querySelectorAll('.dropdown-menu').forEach(m => {
+                    if (m !== menu) m.style.display = 'none';
+                });
+                
+                // Toggle current dropdown
+                menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            } else {
+                // Close all dropdowns when clicking outside
+                document.querySelectorAll('.dropdown-menu').forEach(m => {
+                    m.style.display = 'none';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
