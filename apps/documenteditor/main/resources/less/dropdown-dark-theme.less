@@ -92,6 +92,15 @@
                         color: #fff !important;
                     }
                 }
+
+                &.over > a {
+                    color: #fff !important;
+                    background-color: #404040 !important;
+                }
+            }
+
+            .divider {
+                background-color: #555 !important;
             }
         }
     }
@@ -117,6 +126,88 @@
 
             .caret {
                 border-top-color: #fff !important;
+            }
+
+            &:hover,
+            &:focus {
+                background-color: #404040 !important;
+                border-color: #666 !important;
+            }
+        }
+    }
+}
+
+// Additional styling for input-group-nr comboboxes
+.input-group-nr {
+    &.theme-dark,
+    .theme-type-dark &,
+    .content-theme-dark & {
+        > .form-control {
+            background-color: #333 !important;
+            color: #fff !important;
+            border-color: #555 !important;
+
+            &:focus {
+                background-color: #333 !important;
+                color: #fff !important;
+                border-color: #666 !important;
+                box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.1) !important;
+            }
+        }
+
+        > .btn-default {
+            background-color: #333 !important;
+            border-color: #555 !important;
+            color: #fff !important;
+
+            .caret {
+                border-top-color: #fff !important;
+            }
+
+            &:hover,
+            &:focus {
+                background-color: #404040 !important;
+                border-color: #666 !important;
+            }
+        }
+
+        &.open {
+            > .form-control,
+            > .btn-default {
+                border-color: #666 !important;
+            }
+
+            > .form-control {
+                box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.1) !important;
+            }
+        }
+    }
+}
+
+// Style for combo-dataview-menu (special dropdown menus)
+.combo-dataview-menu {
+    &.theme-dark,
+    .theme-type-dark &,
+    .content-theme-dark & {
+        .form-control {
+            background-color: #333 !important;
+            color: #fff !important;
+            border-color: #555 !important;
+            cursor: pointer !important;
+        }
+
+        .dropdown-menu {
+            background-color: #2a2a2a !important;
+            border-color: #555 !important;
+
+            li > a {
+                color: #fff !important;
+
+                &:hover,
+                &:focus {
+                    background-color: #404040 !important;
+                    color: #fff !important;
+                }
             }
         }
     }

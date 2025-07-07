@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combobox Dark Theme Test - Simple</title>
+    
+    <style>
+        body {
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
+        
+        .combobox-test {
+            margin: 15px 0;
+        }
+        
+        /* Base combobox styling */
+        .combobox {
+            display: block;
+            position: relative;
+        }
+        
+        .input-group {
+            position: relative;
+            display: table;
+            border-collapse: separate;
+        }
+        
+        .input-group-nr {
+            /* input group no radius */
+        }
+        
+        .form-control {
+            display: table-cell;
+            width: 100%;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 6px 12px;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+        
+        .btn-default {
+            color: #333;
+            background-color: #fff;
+            border-color: #ccc;
+        }
+        
+        .btn-default:hover {
+            color: #333;
+            background-color: #e6e6e6;
+            border-color: #adadad;
+        }
+        
+        .caret {
+            display: inline-block;
+            width: 0;
+            height: 0;
+            margin-left: 2px;
+            vertical-align: middle;
+            border-top: 4px solid;
+            border-right: 4px solid transparent;
+            border-left: 4px solid transparent;
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1000;
+            display: none;
+            float: left;
+            min-width: 160px;
+            padding: 5px 0;
+            margin: 2px 0 0;
+            font-size: 14px;
+            text-align: left;
+            list-style: none;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ccc;
+            border: 1px solid rgba(0,0,0,.15);
+            border-radius: 4px;
+            box-shadow: 0 6px 12px rgba(0,0,0,.175);
+        }
+        
+        .dropdown-menu li {
+            list-style: none;
+        }
+        
+        .dropdown-menu li a {
+            display: block;
+            padding: 3px 20px;
+            clear: both;
+            font-weight: normal;
+            line-height: 1.42857143;
+            color: #333;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+        
+        .dropdown-menu li a:hover,
+        .dropdown-menu li a:focus {
+            color: #262626;
+            text-decoration: none;
+            background-color: #f5f5f5;
+        }
+        
+        .dropdown-menu li.selected a {
+            background-color: #337ab7;
+            color: #fff;
+        }
+        
+        .dropdown-menu .divider {
+            height: 1px;
+            margin: 9px 0;
+            overflow: hidden;
+            background-color: #e5e5e5;
+        }
+        
+        /* Combobox specific styling */
+        .combobox .form-control {
+            border-right: 0;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        
+        .combobox .btn {
+            border-left: 0;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            margin-left: -1px;
+        }
+        
+        /* DARK THEME STYLES */
+        .theme-dark {
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+        
+        .theme-dark .test-section {
+            border-color: #555;
+            background-color: #2a2a2a;
+        }
+        
+        /* Standard dropdown dark theme */
+        .theme-dark .dropdown-menu {
+            background-color: #2a2a2a !important;
+            border-color: #555 !important;
+            color: #fff !important;
+        }
+        
+        .theme-dark .dropdown-menu li > a {
+            color: #fff !important;
+            background-color: transparent !important;
+        }
+        
+        .theme-dark .dropdown-menu li > a:focus,
+        .theme-dark .dropdown-menu li > a:hover {
+            color: #fff !important;
+            background-color: #404040 !important;
+        }
+        
+        .theme-dark .dropdown-menu li.over > a {
+            color: #fff !important;
+            background-color: #404040 !important;
+        }
+        
+        .theme-dark .dropdown-menu li.selected a {
+            background-color: #555 !important;
+            color: #fff !important;
+        }
+        
+        .theme-dark .dropdown-menu .divider {
+            background-color: #555 !important;
+        }
+        
+        /* Combobox dark theme */
+        .theme-dark .combobox .form-control {
+            background-color: #333 !important;
+            color: #fff !important;
+            border-color: #555 !important;
+        }
+        
+        .theme-dark .combobox .btn-default {
+            background-color: #333 !important;
+            border-color: #555 !important;
+            color: #fff !important;
+        }
+        
+        .theme-dark .combobox .btn-default:hover,
+        .theme-dark .combobox .btn-default:focus {
+            background-color: #404040 !important;
+            border-color: #666 !important;
+        }
+        
+        .theme-dark .combobox .caret {
+            border-top-color: #fff !important;
+        }
+        
+        /* Input group dark theme */
+        .theme-dark .input-group-nr > .form-control {
+            background-color: #333 !important;
+            color: #fff !important;
+            border-color: #555 !important;
+        }
+        
+        .theme-dark .input-group-nr > .form-control:focus {
+            background-color: #333 !important;
+            color: #fff !important;
+            border-color: #666 !important;
+            box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.1) !important;
+        }
+        
+        .theme-dark .input-group-nr > .btn-default {
+            background-color: #333 !important;
+            border-color: #555 !important;
+            color: #fff !important;
+        }
+        
+        .theme-dark .input-group-nr > .btn-default:hover,
+        .theme-dark .input-group-nr > .btn-default:focus {
+            background-color: #404040 !important;
+            border-color: #666 !important;
+        }
+        
+        /* Combo dataview menu dark theme */
+        .theme-dark .combo-dataview-menu .form-control {
+            background-color: #333 !important;
+            color: #fff !important;
+            border-color: #555 !important;
+            cursor: pointer !important;
+        }
+        
+        .theme-dark .combo-dataview-menu .dropdown-menu {
+            background-color: #2a2a2a !important;
+            border-color: #555 !important;
+        }
+        
+        .theme-dark .combo-dataview-menu .dropdown-menu li > a {
+            color: #fff !important;
+        }
+        
+        .theme-dark .combo-dataview-menu .dropdown-menu li > a:hover,
+        .theme-dark .combo-dataview-menu .dropdown-menu li > a:focus {
+            background-color: #404040 !important;
+            color: #fff !important;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn btn-primary theme-toggle" onclick="toggleTheme()">Toggle Dark Theme</button>
+    
+    <h1>Combobox Dark Theme Test</h1>
+    
+    <div class="test-section">
+        <h2>Standard Dropdown (Previous Implementation)</h2>
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" onclick="toggleDropdown(this)">
+                Standard Dropdown
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#" onclick="selectItem(this, event)">Action</a></li>
+                <li><a href="#" onclick="selectItem(this, event)">Another action</a></li>
+                <li><a href="#" onclick="selectItem(this, event)">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="#" onclick="selectItem(this, event)">Separated link</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Combobox Style Dropdowns (Heading Selectors)</h2>
+        
+        <div class="combobox-test">
+            <label>Font Style Selector:</label>
+            <div class="input-group combobox combo-dataview-menu input-group-nr dropdown-toggle" tabindex="0" onclick="toggleDropdown(this)">
+                <div class="form-control text">Normal</div>
+                <button type="button" class="btn btn-default">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#" onclick="selectComboItem(this, event)">Normal</a></li>
+                    <li><a href="#" onclick="selectComboItem(this, event)">Heading 1</a></li>
+                    <li><a href="#" onclick="selectComboItem(this, event)">Heading 2</a></li>
+                    <li><a href="#" onclick="selectComboItem(this, event)">Heading 3</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#" onclick="selectComboItem(this, event)">Title</a></li>
+                    <li><a href="#" onclick="selectComboItem(this, event)">Subtitle</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="combobox-test">
+            <label>Font Name Selector:</label>
+            <div class="input-group combobox input-group-nr dropdown-toggle" tabindex="0" onclick="toggleDropdown(this)">
+                <div class="form-control text">Arial</div>
+                <button type="button" class="btn btn-default">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li class="selected"><a href="#" onclick="selectComboItem(this, event)">Arial</a></li>
+                    <li><a href="#" onclick="selectComboItem(this, event)">Times New Roman</a></li>
+                    <li><a href="#" onclick="selectComboItem(this, event)">Helvetica</a></li>
+                    <li><a href="#" onclick="selectComboItem(this, event)">Georgia</a></li>
+                    <li><a href="#" onclick="selectComboItem(this, event)">Verdana</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="combobox-test">
+            <label>Font Size Selector:</label>
+            <div class="input-group combobox input-group-nr dropdown-toggle" tabindex="0" onclick="toggleDropdown(this)">
+                <div class="form-control text">12pt</div>
+                <button type="button" class="btn btn-default">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#" onclick="selectComboItem(this, event)">8pt</a></li>
+                    <li><a href="#" onclick="selectComboItem(this, event)">10pt</a></li>
+                    <li class="selected"><a href="#" onclick="selectComboItem(this, event)">12pt</a></li>
+                    <li><a href="#" onclick="selectComboItem(this, event)">14pt</a></li>
+                    <li><a href="#" onclick="selectComboItem(this, event)">16pt</a></li>
+                    <li><a href="#" onclick="selectComboItem(this, event)">18pt</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Input Group Examples</h2>
+        
+        <div class="combobox-test">
+            <label>Simple Input Group:</label>
+            <div class="input-group input-group-nr">
+                <input type="text" class="form-control" value="Sample text">
+                <button type="button" class="btn btn-default">
+                    <span class="caret"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('theme-dark');
+        }
+        
+        function toggleDropdown(element) {
+            const menu = element.querySelector('.dropdown-menu');
+            if (menu) {
+                // Close all other dropdowns
+                document.querySelectorAll('.dropdown-menu').forEach(m => {
+                    if (m !== menu) m.style.display = 'none';
+                });
+                
+                // Toggle current dropdown
+                menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            }
+        }
+        
+        function selectItem(link, event) {
+            event.preventDefault();
+            const menu = link.closest('.dropdown-menu');
+            menu.style.display = 'none';
+        }
+        
+        function selectComboItem(link, event) {
+            event.preventDefault();
+            const menu = link.closest('.dropdown-menu');
+            const toggle = menu.closest('.dropdown-toggle');
+            const textElement = toggle.querySelector('.form-control.text');
+            
+            if (textElement) {
+                textElement.textContent = link.textContent;
+            }
+            
+            // Remove previous selection and add to current
+            menu.querySelectorAll('li').forEach(li => li.classList.remove('selected'));
+            link.closest('li').classList.add('selected');
+            
+            // Close dropdown
+            menu.style.display = 'none';
+        }
+        
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.dropdown-toggle')) {
+                document.querySelectorAll('.dropdown-menu').forEach(m => {
+                    m.style.display = 'none';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
